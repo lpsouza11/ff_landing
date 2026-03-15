@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FF Fit Finds USA — Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #1B2A5C;
+    --navy-deep: #111B3E;
+    --navy-light: #243572;
+    --gold: #C9A84C;
+    --gold-light: #E8D48B;
+    --gold-dark: #A07830;
+    --white: #FFFFFF;
+    --off-white: #F5F0E8;
+    --text-muted: rgba(255,255,255,0.55);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--navy-deep);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 16px 60px;
+    overflow-x: hidden;
+  }
+
+  /* Radial glow behind content */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle noise texture overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 480px;
+    padding-top: 52px;
+  }
+
+  /* ── HEADER ── */
+  .header { text-align: center; margin-bottom: 40px; }
+
+  .logo-wrap {
+    width: 100px; height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid rgba(201,168,76,0.4);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px rgba(201,168,76,0.15), 0 8px 32px rgba(0,0,0,0.5);
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .logo-wrap svg { width: 70px; height: 70px; }
+
+  .handle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    animation: fadeDown 0.6s 0.1s ease both; opacity: 0;
+  }
+
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
+    line-height: 1.1;
+    animation: fadeDown 0.6s 0.15s ease both; opacity: 0;
+  }
+
+  .title span { color: var(--gold-light); }
+
+  .bio {
+    font-size: 13px; font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    animation: fadeDown 0.6s 0.2s ease both; opacity: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex; align-items: center; gap: 14px;
+    margin: 0 0 32px;
+    animation: fadeDown 0.6s 0.25s ease both; opacity: 0;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.35), transparent);
+  }
+  .divider-icon { color: var(--gold); font-size: 12px; opacity: 0.7; letter-spacing: 3px; }
+
+  /* ── LINKS ── */
+  .links { display: flex; flex-direction: column; gap: 14px; }
+
+  .link-btn {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 14px;
+    padding: 16px 22px;
+    text-decoration: none;
+    color: var(--white);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+    opacity: 0;
+  }
+
+  .link-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+
+  .link-btn:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: rgba(201,168,76,0.55);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 20px rgba(201,168,76,0.08);
+  }
+  .link-btn:hover::before { opacity: 1; }
+  .link-btn:active { transform: translateY(0px); }
+
+  .link-btn.primary {
+    background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(160,120,48,0.12));
+    border-color: rgba(201,168,76,0.5);
+  }
+  .link-btn.primary:hover {
+    background: linear-gradient(135deg, rgba(201,168,76,0.28), rgba(160,120,48,0.22));
+    border-color: var(--gold);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 28px rgba(201,168,76,0.18);
+  }
+
+  .link-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-right: 16px; flex-shrink: 0;
+    font-size: 20px;
+  }
+
+  .link-icon.gold-bg {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  }
+  .link-icon.teal-bg  { background: rgba(29,158,117,0.2); border: 1px solid rgba(29,158,117,0.3); }
+  .link-icon.red-bg   { background: rgba(232,57,57,0.15); border: 1px solid rgba(232,57,57,0.25); }
+  .link-icon.blue-bg  { background: rgba(55,138,221,0.15); border: 1px solid rgba(55,138,221,0.25); }
+  .link-icon.green-bg { background: rgba(99,153,34,0.18); border: 1px solid rgba(99,153,34,0.3); }
+  .link-icon.wa-bg    { background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.25); }
+
+  .link-text { flex: 1; }
+  .link-name {
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--white);
+  }
+  .link-desc {
+    font-size: 12px; font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 2px;
+    letter-spacing: 0.2px;
+  }
+
+  .link-arrow {
+    color: rgba(201,168,76,0.5);
+    font-size: 16px; margin-left: 8px;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .link-btn:hover .link-arrow {
+    transform: translateX(4px);
+    color: var(--gold);
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 3.5px; text-transform: uppercase;
+    color: rgba(201,168,76,0.5);
+    margin: 24px 0 12px 4px;
+    opacity: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    opacity: 0;
+    animation: fadeDown 0.6s 0.9s ease both;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 3px;
+    color: rgba(201,168,76,0.35);
+    text-transform: uppercase;
+  }
+  .footer-line {
+    width: 40px; height: 1px;
+    background: rgba(201,168,76,0.2);
+    margin: 10px auto 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .link-btn:nth-child(1) { animation: fadeDown 0.5s 0.3s ease both; }
+  .link-btn:nth-child(2) { animation: fadeDown 0.5s 0.38s ease both; }
+  .link-btn:nth-child(3) { animation: fadeDown 0.5s 0.46s ease both; }
+  .link-btn:nth-child(4) { animation: fadeDown 0.5s 0.54s ease both; }
+  .link-btn:nth-child(5) { animation: fadeDown 0.5s 0.62s ease both; }
+  .section-label { animation: fadeDown 0.5s 0.28s ease both; }
+  .section-label + .link-btn:nth-child(1) { animation-delay: 0.7s; }
+  .section-label + .link-btn:nth-child(2) { animation-delay: 0.78s; }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-wrap">
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#E8D48B"/>
+            <stop offset="40%"  stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#A07830"/>
+          </linearGradient>
+        </defs>
+        <circle cx="250" cy="250" r="250" fill="#1B2A5C"/>
+        <g fill="url(#g)">
+          <rect x="138" y="118" width="130" height="26" rx="4"/>
+          <rect x="138" y="118" width="26" height="172" rx="4"/>
+          <rect x="138" y="193" width="100" height="24" rx="4"/>
+          <rect x="200" y="163" width="130" height="26" rx="4"/>
+          <rect x="200" y="163" width="26" height="172" rx="4"/>
+          <rect x="200" y="238" width="100" height="24" rx="4"/>
+          <rect x="138" y="163" width="26" height="62" rx="0" fill="#1B2A5C"/>
+          <rect x="138" y="163" width="26" height="26" rx="0" fill="url(#g)"/>
+          <rect x="138" y="215" width="26" height="10" rx="0" fill="url(#g)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="handle">fitfinds.usa</div>
+    <div class="title">FF Fit Finds <span>USA</span></div>
+    <div class="bio">Best fitness &amp; wellness finds 💪<br>Curated products · Real results</div>
+  </div>
+
+  <div class="divider" style="animation: fadeDown 0.6s 0.22s ease both; opacity:0">
+    <div class="divider-icon">✦ ✦ ✦</div>
+  </div>
+
+  <!-- SHOP LINKS -->
+  <div class="links">
+
+    <a href="YOUR_TIKTOK_SHOP_LINK_HERE" class="link-btn primary" target="_blank">
+      <div class="link-icon" style="background: linear-gradient(135deg, #ff2d55, #222); width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-right:16px; flex-shrink:0;">🎵</div>
+      <div class="link-text">
+        <div class="link-name">Shop on TikTok</div>
+        <div class="link-desc">Products featured in my videos</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="YOUR_AMAZON_LINK_HERE" class="link-btn" target="_blank">
+      <div class="link-icon gold-bg" style="width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-right:16px; flex-shrink:0;">🛒</div>
+      <div class="link-text">
+        <div class="link-name">Shop on Amazon</div>
+        <div class="link-desc">All my recommended fitness picks</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">FF Fit Finds USA · Wellness</div>
+    <div class="footer-line"></div>
+  </div>
+
+</div>
+</body>
+</html>
